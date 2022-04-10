@@ -79,7 +79,16 @@ class Message(db.Model):
     __tablename__ = "messages"
     query: sql.Select
 
-    id = id = Column(db.Integer, Sequence("message_id_seq"), primary_key=True)
+    id = Column(db.Integer, Sequence("message_id_seq"), primary_key=True)
     message_id = Column(db.Integer)
     chat_id = Column(db.Integer)
     question_callbackdata = Column(db.String(32))
+
+class Differentquestion(db.Model):
+    __tablename__ = "differentquestion"
+    query: sql.Select
+
+    id = Column(db.Integer, Sequence("message_id_seq"), primary_key=True)
+    institute_id = Column(db.Integer, db.ForeignKey("institutes.id"))
+    question_callbackdata = Column(db.String(32))
+    question_result = Column(db.String())
